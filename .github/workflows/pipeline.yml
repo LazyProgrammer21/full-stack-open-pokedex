@@ -15,8 +15,6 @@ jobs:
         with:
           node-version: "16"
       - name: npm install
-        working-directory: ./
         run: npm install
       - name: run Lint
-        working-directory: ./
         run: npm run eslint
