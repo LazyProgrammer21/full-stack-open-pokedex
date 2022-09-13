@@ -15,8 +15,8 @@ jobs:
         with:
           node-version: "16"
       - name: npm install
-        working-directory: /home/lazy/Desktop/full-stack-open-pokedex
+        working-directory: ../full-stack-open-pokedex
         run: npm install
       - name: run Lint
-        working-directory: /home/lazy/Desktop/full-stack-open-pokedex
+        working-directory: ../full-stack-open-pokedex
         run: npm run eslint
