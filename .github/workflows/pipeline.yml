@@ -1,0 +1,22 @@
+
+name: Deployment pipeline:lint
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  simple_deployment_pipeline:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - name: npm install
+        working-directory: ./full-stack-open-pokedex
+        run: npm install
+      - name: run Lint
+        working-directory: ./full-stack-open-pokedex
+        run: npm run eslint
