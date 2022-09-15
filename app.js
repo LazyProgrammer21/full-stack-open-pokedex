@@ -17,3 +17,5 @@ app.listen(PORT, () => {
   console.log('server started on port 5000');
 })
 //new branch created
+
+//check if the deploy occurs when branch is pushed
