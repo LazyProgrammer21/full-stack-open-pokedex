@@ -2,3 +2,7 @@ exercise11.12
 
 rollback test garnu lai v10 ma app deplyoed vo
 next time v11 deploy garnu lagda app crash vo vane v10 ma app run gardinxa.
+
+
+exercise11.14 
+kunai pani branch push garda deploy hunu vaye app in heroku
