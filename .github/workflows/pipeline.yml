@@ -75,7 +75,7 @@ jobs:
       #     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
     steps:
       - name: Check the deployed service URL
-        uses: jtalk/url-health-check-action@v2
+      -  uses: jtalk/url-health-check-action@v2
         with:
       # Check the following URLs one by one sequentially
           url: https://example.com|http://example.com
