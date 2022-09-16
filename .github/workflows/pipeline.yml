@@ -40,7 +40,7 @@ jobs:
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
-    if: ${{ !contain('env.COMMIT_MESSAGES',[skip ci]) }}
+    if: ${{!contain(env.COMMIT_MESSAGES.message,'#skip') }}
     steps:
       - uses: actions/checkout@v3
         with:
