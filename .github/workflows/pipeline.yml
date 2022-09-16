@@ -1,13 +1,75 @@
 
+# name: Deployment pipeline:lint
+
+# on:
+#   push:
+#     branches:
+#       - master
+#   pull_request:
+#     branches: [master]
+#     types: [opened, synchronize]
+
+# jobs:
+#   simple_deployment_pipeline:
+#     runs-on: ubuntu-20.04
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-node@v2
+#         with:
+#           node-version: "16"
+#       - name: npm install
+#         run: npm install
+#       - name: run Lint
+#         run: npm run eslint
+#       - name: run test
+#         run: npm run test
+#       - name: e2e tests
+#         uses: cypress-io/github-action@v4
+#         with:
+#           build: npm run build
+#           start: npm run start-prod
+#           wait-on: http://localhost:5000
+
+#       - name: deploy to Heroku
+
+        
+
+   
+#       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+#         if: ${{ github.event_name == 'push' }}
+#         with:
+#           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#           heroku_app_name: "full-stack-open-pokedex1" #Must be unique in Heroku
+#           heroku_email: "tamang.subash36@gmail.com"
+#           healthcheck: "https://full-stack-open-pokedex1.herokuapp.com/health"
+#           checkstring: "ok"
+#           delay: 5
+#           rollbackonhealthcheckfailed: true
+
+
+
+# tag_release:
+#     needs: [simple_deployment_pipeline]
+#     runs-on: ubuntu-20.04
+#     if: ${{ github.event_name == 'push' }}
+#     steps:
+#       - uses: actions/checkout@v3
+#         with:
+#           fetch-depth: "0"
+#       - name: Bump version and push tag
+#         uses: anothrNick/github-tag-action@1.36.0
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           WITH_V: true
+
+
+
 name: Deployment pipeline:lint
 
 on:
   push:
     branches:
       - master
-  pull_request:
-    branches: [master]
-    types: [opened, synchronize]
 
 jobs:
   simple_deployment_pipeline:
@@ -30,13 +92,8 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
 
-      - name: deploy to Heroku
-
-        
-
-   
+      - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        if: ${{ github.event_name == 'push' }}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "full-stack-open-pokedex1" #Must be unique in Heroku
@@ -45,19 +102,3 @@ jobs:
           checkstring: "ok"
           delay: 5
           rollbackonhealthcheckfailed: true
-
-
-
-# tag_release:
-#     needs: [simple_deployment_pipeline]
-#     runs-on: ubuntu-20.04
-#     if: ${{ github.event_name == 'push' }}
-#     steps:
-#       - uses: actions/checkout@v3
-#         with:
-#           fetch-depth: "0"
-#       - name: Bump version and push tag
-#         uses: anothrNick/github-tag-action@1.36.0
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           WITH_V: true
