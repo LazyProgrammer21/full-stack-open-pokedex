@@ -2,6 +2,9 @@
 name: Health check
 
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron:  '* * * * *'
 
