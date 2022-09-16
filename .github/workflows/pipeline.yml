@@ -46,7 +46,7 @@ jobs:
           fetch-depth: "0"
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.36.0
-        if: ${{!contains(env.COMMIT_MESSAGES.message,'skip') }}
+        if: ${{!contains(env.COMMIT_MESSAGES,'skip') }}
         env:
           COMMIT_MESSAGES: ${{ join(github.event.commits.*.message) }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
