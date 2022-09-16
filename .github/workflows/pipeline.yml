@@ -37,6 +37,7 @@ jobs:
           delay: 5
           rollbackonhealthcheckfailed: true
 
+
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
@@ -57,7 +58,8 @@ jobs:
         if: success()
         with:
           severity: info
-          details: Test Succeeded!
+          text: New version of Pokedex deployed
+          description: to https://full-stack-open-pokedex1.herokuapp.com/ by LazyProgrammer21
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
         uses: rjstone/discord-webhook-notify@v1
