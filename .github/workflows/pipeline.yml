@@ -46,7 +46,7 @@ jobs:
           fetch-depth: "0"
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.36.0
-        if: ${{!contains(env.COMMIT_MESSAGES,'skip') }}
+        if: ${{!contains(env.COMMIT_MESSAGES,'#skip') }}
         env:
           COMMIT_MESSAGES: ${{ join(github.event.commits.*.message) }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -61,17 +61,17 @@ jobs:
           severity: info
           details: Test Succeeded!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: Test Failure
-        uses: rjstone/discord-webhook-notify@v1
-        if: failure()
-        with:
-          severity: error
-          details: Test Failed!
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: Test Cancelled
-        uses: rjstone/discord-webhook-notify@v1
-        if: cancelled()
-        with:
-          severity: warn
-          details: Test Cancelled!
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      # - name: Test Failure
+      #   uses: rjstone/discord-webhook-notify@v1
+      #   if: failure()
+      #   with:
+      #     severity: error
+      #     details: Test Failed!
+      #     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      # - name: Test Cancelled
+      #   uses: rjstone/discord-webhook-notify@v1
+      #   if: cancelled()
+      #   with:
+      #     severity: warn
+      #     details: Test Cancelled!
+      #     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
