@@ -40,13 +40,13 @@ jobs:
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
-    if: ${{!contains(env.COMMIT_MESSAGES.message,'#skip') }}
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: "0"
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.36.0
+        if: ${{!contains(env.COMMIT_MESSAGES.message,'#skip') }}
         env:
           COMMIT_MESSAGES: ${{ join(github.event.commits.*.message) }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
